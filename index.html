@@ -1,142 +1,246 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Birthday Annu ❤️</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Annu ❤️</title>
 
-<style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', sans-serif;
-}
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
 
-body {
-    background: #0e0e0e;
-    color: white;
-}
+        body {
+            background: #0e0e0e;
+            color: white;
+        }
 
-@font-face {
-    font-family: 'OrangeAvenue';
-    src: url('OrangeAvenueDEMO-Regular.otf') format('opentype');
-    font-weight: 400;
-    font-style: normal;
-}
+        @font-face {
+            font-family: 'OrangeAvenue';
+            src: url('OrangeAvenueDEMO-Regular.otf') format('opentype');
+            font-weight: 400;
+            font-style: normal;
+        }
 
-/* ================= HEADER SECTION ================= */
-.header {
-    position: relative;
-    height: 100vh;
-    width: 100%;
-    overflow: hidden;
-}
+        /* ================= HEADER SECTION ================= */
+        /* Countdown Section */
+        .countdown-section {
+            padding: 5rem 0;
+            background: var(--light-gray);
+        }
 
-/* Background Image */
-.header::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: url("img-2.jpg") center / cover no-repeat;
-    filter: grayscale(100%);
-    transform: scale(1.05);
-    animation: slowZoom 20s ease-in-out infinite alternate;
-}
+        .countdown-card {
+            background: white;
+            border-radius: 24px;
+            padding: 4rem 2rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        }
 
-/* Dark overlay */
-.header::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.55);
-}
+        .countdown-badge {
+            display: inline-block;
+            background: rgba(52, 152, 219, 0.1);
+            color: var(--primary-blue);
+            padding: 0.6rem 1.6rem;
+            border-radius: 50px;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
 
-/* Content */
-.header-content {
-    position: relative;
-    z-index: 2;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: left;
-    text-align: center;
-    padding: 20px;
-    margin-left: 50px;
-}
+        .countdown-title {
+            font-size: 2.8rem;
+            font-weight: 300;
+            color: var(--dark-gray);
+            margin-bottom: 1rem;
+        }
 
-/* Text animation wrapper */
-.header-text {
-    max-width: 800px;
-    animation: fadeUp 1.8s ease forwards;
-    opacity: 0;
-}
+        .countdown-subtitle {
+            color: #64748b;
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
 
-/* Title */
-.header-text h1 {
-    font-size: clamp(2.8rem, 6vw, 4.5rem);
-    text-align: left;
-    color: #ffffff;
-    /* text-shadow: 0 0 25px rgba(255,105,180,0.7); */
-    margin-bottom: 20px;
-    font-family: OrangeAvenue, serif;
-    font-weight: 300;
-}
+        .countdown-timer {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
 
-/* Quote */
-.header-text p {
-    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
-    line-height: 1.7;
-    opacity: 0.9;
-    font-style: italic;
-}
+        .time-box {
+            background: rgba(52, 152, 219, 0.08);
+            border-radius: 18px;
+            padding: 1.5rem 1.8rem;
+            min-width: 120px;
+            transition: transform 0.3s ease;
+        }
 
-/* Subtle scroll hint */
-.scroll-hint {
-    margin-top: 40px;
-    font-size: 0.85rem;
-    opacity: 0.6;
-    letter-spacing: 2px;
-}
+        .time-box:hover {
+            transform: translateY(-5px);
+        }
 
-/* ================= ANIMATIONS ================= */
-@keyframes fadeUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
+        .time-box span {
+            display: block;
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary-blue);
+            line-height: 1;
+        }
 
-@keyframes slowZoom {
-    from {
-        transform: scale(1.05);
-    }
-    to {
-        transform: scale(1.15);
-    }
-}
-</style>
+        .time-box small {
+            font-size: 0.9rem;
+            color: #64748b;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .countdown-note {
+            margin-top: 2.5rem;
+            font-style: italic;
+            color: #94a3b8;
+        }
+
+        /* Mobile */
+        @media (max-width: 600px) {
+            .countdown-title {
+                font-size: 2rem;
+            }
+
+            .time-box {
+                min-width: 90px;
+                padding: 1rem;
+            }
+
+            .time-box span {
+                font-size: 2.2rem;
+            }
+        }
+
+
+        /* ================= ANIMATIONS ================= */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slowZoom {
+            from {
+                transform: scale(1.05);
+            }
+
+            to {
+                transform: scale(1.15);
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-<header class="header">
-    <div class="header-content">
-        <div class="header-text">
-            <h1>Happy 
-                <br>Birthday Annu</h1>
-            <p>
-                “Some people make the world more beautiful  
-                just by being in it.”
-            </p>
-            <div class="scroll-hint">SCROLL ↓</div>
+    <header class="header">
+        <div class="header-content">
+            <!-- Countdown Section -->
+            <section class="countdown-section">
+                <div class="grid-container">
+                    <div class="grid-x align-center text-center">
+                        <div class="cell large-8">
+                            <div class="countdown-card">
+                                <span class="countdown-badge">Special Moment</span>
+
+                                <h2 class="countdown-title">
+                                    Countdown to <span class="gradient-text">February 24</span>
+                                </h2>
+
+                                <p class="countdown-subtitle">
+                                    Something meaningful begins at <strong>12:00 PM</strong>
+                                </p>
+
+                                <div class="countdown-timer" id="countdownTimer">
+                                    <div class="time-box">
+                                        <span id="days">00</span>
+                                        <small>Days</small>
+                                    </div>
+                                    <div class="time-box">
+                                        <span id="hours">00</span>
+                                        <small>Hours</small>
+                                    </div>
+                                    <div class="time-box">
+                                        <span id="minutes">00</span>
+                                        <small>Minutes</small>
+                                    </div>
+                                    <div class="time-box">
+                                        <span id="seconds">00</span>
+                                        <small>Seconds</small>
+                                    </div>
+                                </div>
+
+                                <p class="countdown-note">
+                                    Time is moving… just like everything beautiful.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
-    </div>
-</header>
+    </header>
+
+    <script>
+        (function () {
+            // Target: Feb 24, 12:00 (local time)
+            const targetDate = new Date(
+                new Date().getFullYear(),
+                1, // February (0-based)
+                24,
+                12,
+                0,
+                0
+            ).getTime();
+
+            const daysEl = document.getElementById('days');
+            const hoursEl = document.getElementById('hours');
+            const minutesEl = document.getElementById('minutes');
+            const secondsEl = document.getElementById('seconds');
+
+            function updateCountdown() {
+                const now = new Date().getTime();
+                const distance = targetDate - now;
+
+                if (distance <= 0) {
+                    daysEl.textContent = '00';
+                    hoursEl.textContent = '00';
+                    minutesEl.textContent = '00';
+                    secondsEl.textContent = '00';
+                    return;
+                }
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                daysEl.textContent = String(days).padStart(2, '0');
+                hoursEl.textContent = String(hours).padStart(2, '0');
+                minutesEl.textContent = String(minutes).padStart(2, '0');
+                secondsEl.textContent = String(seconds).padStart(2, '0');
+            }
+
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+        })();
+    </script>
+
 
 </body>
+
 </html>
