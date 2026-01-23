@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Annu ❤️</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background: #0e0e0e;
+    color: white;
+}
+
+@font-face {
+    font-family: 'OrangeAvenue';
+    src: url('OrangeAvenueDEMO-Regular.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* ================= HEADER SECTION ================= */
+.header {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+}
+
+/* Background Image */
+.header::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: url("img-2.jpg") center / cover no-repeat;
+    filter: grayscale(100%);
+    transform: scale(1.05);
+    animation: slowZoom 20s ease-in-out infinite alternate;
+}
+
+/* Dark overlay */
+.header::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+}
+
+/* Content */
+.header-content {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    text-align: center;
+    padding: 20px;
+    margin-left: 50px;
+}
+
+/* Text animation wrapper */
+.header-text {
+    max-width: 800px;
+    animation: fadeUp 1.8s ease forwards;
+    opacity: 0;
+}
+
+/* Title */
+.header-text h1 {
+    font-size: clamp(2.8rem, 6vw, 4.5rem);
+    text-align: left;
+    color: #ffffff;
+    /* text-shadow: 0 0 25px rgba(255,105,180,0.7); */
+    margin-bottom: 20px;
+    font-family: OrangeAvenue, serif;
+    font-weight: 300;
+}
+
+/* Quote */
+.header-text p {
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    line-height: 1.7;
+    opacity: 0.9;
+    font-style: italic;
+}
+
+/* Subtle scroll hint */
+.scroll-hint {
+    margin-top: 40px;
+    font-size: 0.85rem;
+    opacity: 0.6;
+    letter-spacing: 2px;
+}
+
+/* ================= ANIMATIONS ================= */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slowZoom {
+    from {
+        transform: scale(1.05);
+    }
+    to {
+        transform: scale(1.15);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+    <div class="header-content">
+        <div class="header-text">
+            <h1>Happy 
+                <br>Birthday Annu</h1>
+            <p>
+                “Some people make the world more beautiful  
+                just by being in it.”
+            </p>
+            <div class="scroll-hint">SCROLL ↓</div>
+        </div>
+    </div>
+</header>
+
+</body>
+</html>
