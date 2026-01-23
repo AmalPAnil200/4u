@@ -4,109 +4,156 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday Annu ❤️</title>
+    <title>Special Moment</title>
 
     <style>
+        /* ================= RESET ================= */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', sans-serif;
         }
 
-        body {
-            background: #0e0e0e;
-            color: white;
-        }
-
+        /* ================= FONT ================= */
         @font-face {
             font-family: 'OrangeAvenue';
             src: url('OrangeAvenueDEMO-Regular.otf') format('opentype');
-            font-weight: 400;
-            font-style: normal;
         }
 
-        /* ================= HEADER SECTION ================= */
-        /* Countdown Section */
-        .countdown-section {
-            padding: 5rem 0;
-            background: var(--light-gray);
+        /* ================= BODY ================= */
+        body {
+            font-family: 'OrangeAvenue', sans-serif;
+            background: #000;
+            color: #fff;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        /* ================= HEARTS ================= */
+        .heart {
+            position: fixed;
+            bottom: -20px;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 18px;
+            animation: floatUp linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes floatUp {
+            from {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+
+            to {
+                transform: translateY(-120vh) scale(1.6);
+                opacity: 0;
+            }
+        }
+
+        /* ================= COUNTDOWN ================= */
+        .countdown-wrapper {
+            position: relative;
+            z-index: 5;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
         }
 
         .countdown-card {
-            background: white;
-            border-radius: 24px;
-            padding: 4rem 2rem;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 28px;
+            padding: 3.5rem 3rem;
+            max-width: 720px;
+            width: 100%;
+            text-align: center;
+            backdrop-filter: blur(6px);
+            animation: fadeUp 1.2s ease forwards;
         }
 
-        .countdown-badge {
+        .badge {
             display: inline-block;
-            background: rgba(52, 152, 219, 0.1);
-            color: var(--primary-blue);
-            padding: 0.6rem 1.6rem;
-            border-radius: 50px;
-            font-weight: 600;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 0.5rem 1.6rem;
+            border-radius: 999px;
+            letter-spacing: 2px;
+            font-size: 0.8rem;
             margin-bottom: 1.5rem;
         }
 
-        .countdown-title {
+        .title {
             font-size: 2.8rem;
-            font-weight: 300;
-            color: var(--dark-gray);
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
         }
 
-        .countdown-subtitle {
-            color: #64748b;
-            margin-bottom: 3rem;
+        .subtitle {
             font-size: 1.1rem;
+            opacity: 0.7;
+            margin-bottom: 3rem;
         }
 
-        .countdown-timer {
+        /* ================= TIMER ================= */
+        .timer {
             display: flex;
             justify-content: center;
-            gap: 1.5rem;
+            gap: 1.4rem;
             flex-wrap: wrap;
         }
 
         .time-box {
-            background: rgba(52, 152, 219, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 18px;
-            padding: 1.5rem 1.8rem;
+            padding: 1.4rem 1.6rem;
             min-width: 120px;
             transition: transform 0.3s ease;
         }
 
         .time-box:hover {
-            transform: translateY(-5px);
+            transform: translateY(-6px);
         }
 
         .time-box span {
             display: block;
             font-size: 3rem;
-            font-weight: 800;
-            color: var(--primary-blue);
+            font-weight: bold;
             line-height: 1;
         }
 
         .time-box small {
-            font-size: 0.9rem;
-            color: #64748b;
-            letter-spacing: 1px;
-            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            opacity: 0.6;
         }
 
-        .countdown-note {
+        .note {
             margin-top: 2.5rem;
             font-style: italic;
-            color: #94a3b8;
+            opacity: 0.6;
         }
 
-        /* Mobile */
+        /* ================= ANIM ================= */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ================= MOBILE ================= */
         @media (max-width: 600px) {
-            .countdown-title {
+            .title {
                 font-size: 2rem;
+            }
+
+            .countdown-card {
+                padding: 2.5rem 1.5rem;
             }
 
             .time-box {
@@ -118,128 +165,97 @@
                 font-size: 2.2rem;
             }
         }
-
-
-        /* ================= ANIMATIONS ================= */
-        @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes slowZoom {
-            from {
-                transform: scale(1.05);
-            }
-
-            to {
-                transform: scale(1.15);
-            }
-        }
     </style>
 </head>
 
 <body>
 
-    <header class="header">
-        <div class="header-content">
-            <!-- Countdown Section -->
-            <section class="countdown-section">
-                <div class="grid-container">
-                    <div class="grid-x align-center text-center">
-                        <div class="cell large-8">
-                            <div class="countdown-card">
-                                <span class="countdown-badge">Special Moment</span>
+    <!-- HEARTS CONTAINER -->
+    <div id="hearts"></div>
 
-                                <h2 class="countdown-title">
-                                    Countdown to <span class="gradient-text">February 24</span>
-                                </h2>
+    <!-- COUNTDOWN -->
+    <div class="countdown-wrapper">
+        <div class="countdown-card">
+            <div class="badge">SPECIAL MOMENT</div>
 
-                                <p class="countdown-subtitle">
-                                    Something meaningful begins at <strong>12:00 PM</strong>
-                                </p>
+            <h1 class="title">Countdown to Special Day</h1>
 
-                                <div class="countdown-timer" id="countdownTimer">
-                                    <div class="time-box">
-                                        <span id="days">00</span>
-                                        <small>Days</small>
-                                    </div>
-                                    <div class="time-box">
-                                        <span id="hours">00</span>
-                                        <small>Hours</small>
-                                    </div>
-                                    <div class="time-box">
-                                        <span id="minutes">00</span>
-                                        <small>Minutes</small>
-                                    </div>
-                                    <div class="time-box">
-                                        <span id="seconds">00</span>
-                                        <small>Seconds</small>
-                                    </div>
-                                </div>
+            <p class="subtitle">Something meaningful begins at <strong>12:00 PM</strong></p>
 
-                                <p class="countdown-note">
-                                    Time is moving… just like everything beautiful.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+            <div class="timer">
+                <div class="time-box">
+                    <span id="days">00</span>
+                    <small>DAYS</small>
                 </div>
-            </section>
+                <div class="time-box">
+                    <span id="hours">00</span>
+                    <small>HOURS</small>
+                </div>
+                <div class="time-box">
+                    <span id="minutes">00</span>
+                    <small>MINUTES</small>
+                </div>
+                <div class="time-box">
+                    <span id="seconds">00</span>
+                    <small>SECONDS</small>
+                </div>
+            </div>
+
+            <p class="note">Time is moving… just like everything beautiful.</p>
         </div>
-    </header>
+    </div>
 
     <script>
+        /* ================= COUNTDOWN ================= */
         (function () {
-            // Target: Feb 24, 12:00 (local time)
             const targetDate = new Date(
                 new Date().getFullYear(),
                 1, // February (0-based)
-                24,
-                12,
+                23, // 👈 Reveal on 23rd
+                12, // 👈 12:00 PM
                 0,
                 0
             ).getTime();
 
-            const daysEl = document.getElementById('days');
-            const hoursEl = document.getElementById('hours');
-            const minutesEl = document.getElementById('minutes');
-            const secondsEl = document.getElementById('seconds');
+            const d = document.getElementById("days");
+            const h = document.getElementById("hours");
+            const m = document.getElementById("minutes");
+            const s = document.getElementById("seconds");
 
-            function updateCountdown() {
-                const now = new Date().getTime();
-                const distance = targetDate - now;
+            function tick() {
+                const now = Date.now();
+                const diff = targetDate - now;
 
-                if (distance <= 0) {
-                    daysEl.textContent = '00';
-                    hoursEl.textContent = '00';
-                    minutesEl.textContent = '00';
-                    secondsEl.textContent = '00';
+                if (diff <= 0) {
+                    d.textContent = h.textContent = m.textContent = s.textContent = "00";
                     return;
                 }
 
-                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-                daysEl.textContent = String(days).padStart(2, '0');
-                hoursEl.textContent = String(hours).padStart(2, '0');
-                minutesEl.textContent = String(minutes).padStart(2, '0');
-                secondsEl.textContent = String(seconds).padStart(2, '0');
+                d.textContent = String(Math.floor(diff / 86400000)).padStart(2, "0");
+                h.textContent = String(Math.floor(diff / 3600000) % 24).padStart(2, "0");
+                m.textContent = String(Math.floor(diff / 60000) % 60).padStart(2, "0");
+                s.textContent = String(Math.floor(diff / 1000) % 60).padStart(2, "0");
             }
 
-            updateCountdown();
-            setInterval(updateCountdown, 1000);
+            tick();
+            setInterval(tick, 1000);
         })();
-    </script>
 
+        /* ================= HEARTS ================= */
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.className = "heart";
+            heart.innerHTML = "❤️";
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.fontSize = 12 + Math.random() * 22 + "px";
+            heart.style.animationDuration = 4 + Math.random() * 5 + "s";
+            document.body.appendChild(heart);
+
+            setTimeout(() => heart.remove(), 9000);
+        }
+
+        setInterval(createHeart, 300);
+    </script>
 
 </body>
 
