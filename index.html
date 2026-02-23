@@ -759,6 +759,74 @@
         .hidden {
             display: none;
         }
+
+        /* ================= COUNTDOWN SECTION ================= */
+        #countdownSection {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        #countdownSection h1 {
+            font-size: clamp(1.8rem, 5vw, 3rem);
+            margin-bottom: 30px;
+        }
+
+        /* TIMER WRAPPER */
+        .timer {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        /* EACH BOX */
+        .box {
+            min-width: 100px;
+            padding: 20px;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(6px);
+            transition: transform 0.3s ease;
+        }
+
+        .box:hover {
+            transform: translateY(-5px);
+        }
+
+        /* NUMBER */
+        .box span {
+            display: block;
+            font-size: clamp(1.8rem, 6vw, 3rem);
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        /* LABEL */
+        .box {
+            font-size: clamp(0.8rem, 2vw, 1rem);
+        }
+
+        /* ================= MOBILE FIX ================= */
+        @media (max-width: 480px) {
+
+            .timer {
+                gap: 15px;
+            }
+
+            .box {
+                min-width: 70px;
+                padding: 15px;
+            }
+
+            .box span {
+                font-size: 1.6rem;
+            }
+        }
     </style>
 </head>
 
@@ -766,7 +834,7 @@
 
     <!-- TAP TO START (for autoplay safety) -->
     <div id="tapOverlay" class="tap-overlay">
-        Tap Anywhere To Begin ❤️
+        Tap to Start the Celebration love
     </div>
 
     <!-- ================= COUNTDOWN ================= -->
