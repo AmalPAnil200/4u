@@ -759,6 +759,10 @@
         .hidden {
             display: none;
         }
+        
+        #musicControl {
+            display: none;
+        }
 
         /* ================= COUNTDOWN SECTION ================= */
         #countdownSection {
@@ -836,6 +840,11 @@
     <div id="tapOverlay" class="tap-overlay">
         Tap to Start the Celebration love
     </div>
+    
+    <!-- Music control button -->
+    <button id="musicControl" style="position: fixed; top: 20px; right: 20px; z-index: 1000; background: rgba(255, 153, 153, 0.8); border: none; border-radius: 50%; width: 50px; height: 50px; cursor: pointer; font-size: 20px;">
+        ▶️
+    </button>
 
     
 
@@ -1051,6 +1060,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const tapOverlay = document.getElementById("tapOverlay");
     const music = document.getElementById("bgMusic");
+    const musicControl = document.getElementById("musicControl");
+    
+    let musicPlaying = false;
 
     /* ================= SAFE MUSIC START ================= */
     if (tapOverlay && music) {
@@ -1061,12 +1073,17 @@ document.addEventListener("DOMContentLoaded", function () {
             music.volume = 0.7;   // adjust if needed
             music.loop = true;
 
+            // Show the music control button after tap overlay disappears
+            if (musicControl) musicControl.style.display = 'block';
+            
             const playPromise = music.play();
 
             if (playPromise !== undefined) {
                 playPromise
                     .then(() => {
                         console.log("Music started successfully");
+                        musicPlaying = true;
+                        if (musicControl) musicControl.innerHTML = "⏸️";
                     })
                     .catch(error => {
                         console.error("Playback prevented:", error);
@@ -1074,6 +1091,58 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
             runConfetti();
+        });
+    }
+    
+    /* ================= MUSIC CONTROL BUTTON ================= */
+    if (musicControl && music) {
+        // Initially hide the music button until tap overlay is dismissed
+        musicControl.style.display = 'none';
+        
+        musicControl.addEventListener("click", function() {
+            if (musicPlaying) {
+                music.pause();
+                musicPlaying = false;
+                musicControl.innerHTML = "▶️";
+            } else {
+                // Ensure volume and loop are set
+                music.volume = 0.7;
+                music.loop = true;
+                
+                const playPromise = music.play();
+                
+                if (playPromise !== undefined) {
+                    playPromise
+                        .then(() => {
+                            console.log("Music resumed successfully");
+                            musicPlaying = true;
+                            musicControl.innerHTML = "⏸️";
+                        })
+                        .catch(error => {
+                            console.error("Playback prevented:", error);
+                            
+                            // Fallback: try to play after user interaction
+                            if (error.name === 'NotAllowedError') {
+                                // Attempt to play after a brief timeout to ensure user interaction is registered
+                                setTimeout(() => {
+                                    const retryPlay = music.play();
+                                    if (retryPlay !== undefined) {
+                                        retryPlay
+                                            .then(() => {
+                                                console.log("Music started after retry");
+                                                musicPlaying = true;
+                                                musicControl.innerHTML = "⏸️";
+                                            })
+                                            .catch(retryError => {
+                                                console.error("Retry failed:", retryError);
+                                                alert('Audio playback failed. Please refresh the page and try clicking the "Tap to Start" overlay first.');
+                                            });
+                                    }
+                                }, 100);
+                            }
+                        });
+                }
+            }
         });
     }
 
@@ -1125,4 +1194,3 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 </html>
-
